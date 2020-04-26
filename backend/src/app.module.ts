@@ -1,10 +1,25 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { HypixelApiModule } from './hypixel/hypixelApi.module';
+import { ConfigModule } from '@nestjs/config';
+import { DataService } from './status/data.service';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot(
+      {
+        isGlobal: true,
+      }
+    ),
+    HypixelApiModule,
+  ],
+  controllers: [
+    AppController,
+  ],
+  providers: [
+    DataService,
+  ],
+  exports: [
+  ],
 })
-export class AppModule {}
+export class AppModule { }
