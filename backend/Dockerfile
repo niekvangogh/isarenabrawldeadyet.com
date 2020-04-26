@@ -1,13 +1,13 @@
-FROM node:8
+FROM node:12
 
-EXPOSE 8080
+WORKDIR /backend
 
-WORKDIR /usr/src/app
+COPY . .
 
-COPY package*.json ./
+RUN npm i --production
+RUN npm install -g @nestjs/cli
 
-RUN npm install
+RUN npm run build
 
-COPY ./dist ./dist
-
-CMD node dist/main
+CMD node dist/main.js
+EXPOSE 3000/tcp

@@ -1,32 +1,29 @@
 on: push
-name: Frontend
+name: Backend
 jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
       - name: Copy repository files
         uses: actions/checkout@master
-      - name: lint
-        working-directory: ./frontend
+      - name: tests
+        working-directory: ./backend
         run: |
-          npm ci
-          npm run lint
-      # - name: e2e tests
-      #   working-directory: ./frontend
-      #   run: |
-      #     npm ci
-      #     npm run test:e2e
-  deploy:
+          npm i
+          npm run test
+  containerize:
+    needs: [tests]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - name: Copy Repo Files
+        uses: actions/checkout@master
       - name: Publish Docker Image to GPR
         uses: machine-learning-apps/gpr-docker-publish@master
         id: docker
         with:
-          IMAGE_NAME: "isarenabrawldeadyet-frontend"
-          DOCKERFILE_PATH: "frontend/Dockerfile"
-          BUILD_CONTEXT: "frontend/"
+          IMAGE_NAME: "isarenabrawldeadyet-backend"
+          DOCKERFILE_PATH: "backend/Dockerfile"
+          BUILD_CONTEXT: "backend/"
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
       - name: Deploy
@@ -37,5 +34,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE }}
           script: |
             docker pull ${{ steps.docker.outputs.IMAGE_SHA_NAME }}
-            docker stop isarenabrawldeadyet.frontend || true && docker isarenabrawldeadyet.frontend || true
-            docker run --detach -p 8080:8080 --name isarenabrawldeadyet.frontend ${{ steps.docker.outputs.IMAGE_SHA_NAME }}
+            docker stop isarenabrawldeadyet.backend || true && docker isarenabrawldeadyet.backend || true
+            docker run --detach -p 3000:3000 --name isarenabrawldeadyet.backend ${{ steps.docker.outputs.IMAGE_SHA_NAME }}
