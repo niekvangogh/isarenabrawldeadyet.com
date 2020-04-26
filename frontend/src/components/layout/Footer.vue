@@ -1,8 +1,8 @@
 <template>
   <footer>
-    {{ $t('footer.made_with') }}
+    {{ $t("footer.made_with") }}
     <span class="hearth">❤</span>
-    {{ $t('footer.by') }} Nivyox
+    {{ $t("footer.by") }} Nivyox
     <span class="subtle">(Niek van Gogh)</span>
   </footer>
 </template>
