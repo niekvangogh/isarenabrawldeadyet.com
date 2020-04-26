@@ -1,6 +1,6 @@
 on: push
 jobs:
-  test:
+  tests:
     runs-on: ubuntu-latest
     steps:
       - name: Copy repository files
@@ -15,15 +15,16 @@ jobs:
       #   run: |
       #     npm ci
       #     npm run test:e2e
+  containerize:
+    needs: [tests]
+    runs-on: ubuntu-latest
+    steps:
       - name: Publish Docker Image to GPR
         uses: machine-learning-apps/gpr-docker-publish@master
         id: docker
         with:
           IMAGE_NAME: "isarenabrawldeadyet-frontend"
-          DOCKERFILE_PATH: "./frontend/Dockerfile"
-          BUILD_CONTEXT: "./frontend"
+          DOCKERFILE_PATH: "frontend/Dockerfile"
+          BUILD_CONTEXT: "frontend/"
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
-      # - name: deploy
-      #   working-directory: ./frontend
-      #   run: |
