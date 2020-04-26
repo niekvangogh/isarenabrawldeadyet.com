@@ -1,10 +1,10 @@
 <template>
   <div v-if="isLoaded" class="wrapper">
     <div v-if="isAlive">
-      <h2>🦀 Arena Brawl is still alive 🦀</h2>
-      <p>There are currently {{ currentPlayers }} player(s) playing the dead game!</p>
+      <h2>🦀 {{ $t('counter.is_alive') }} 🦀</h2>
+      <p>{{ $t('counter.currently_playing', {amount: currentPlayers}) }}</p>
     </div>
-    <div v-else>🦀 Arena Brawl is actually dead 🦀</div>
+    <div v-else>🦀 {{ $t('counter.is_dead') }} 🦀</div>
   </div>
 </template>
 <script lang="ts">
