@@ -2,12 +2,11 @@
   <div v-if="isLoaded" class="wrapper">
     <div v-if="isAlive">
       <h2>🦀 Arena Brawl is still alive 🦀</h2>
-      <p>There are currently {{ currentPlayers }} playing the dead game!</p>
+      <p>There are currently {{ currentPlayers }} player(s) playing the dead game!</p>
     </div>
     <div v-else>🦀 Arena Brawl is actually dead 🦀</div>
   </div>
 </template>
-
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
