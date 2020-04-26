@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import HypixelApiService from "src/hypixel/hypixelApi.service";
+import HypixelApiService from "../hypixel/hypixelApi.service";
 
 @Injectable()
 export class DataService {
