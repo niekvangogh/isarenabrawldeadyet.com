@@ -3,11 +3,27 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Copy repository files
+        uses: actions/checkout@master
       - name: lint
+        working-directory: ./frontend
         run: |
-          cd frontend && npm ci
+          npm ci
           npm run lint
-      - name: e2e
-        run: |
-          cd frontend && npm ci
-          npm run test:e2e
+      # - name: e2e tests
+      #   working-directory: ./frontend
+      #   run: |
+      #     npm ci
+      #     npm run test:e2e
+      - name: Publish Docker Image to GPR
+        uses: machine-learning-apps/gpr-docker-publish@master
+        id: docker
+        with:
+          IMAGE_NAME: "isarenabrawldeadyet-frontend"
+          DOCKERFILE_PATH: "./frontend/Dockerfile"
+          BUILD_CONTEXT: "./frontend"
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      # - name: deploy
+      #   working-directory: ./frontend
+      #   run: |
