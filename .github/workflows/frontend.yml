@@ -1,0 +1,13 @@
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: lint
+        run: |
+          cd frontend && npm ci
+          npm run lint
+      - name: e2e
+        run: |
+          cd frontend && npm ci
+          npm run test:e2e
