@@ -1,43 +1,28 @@
 <template>
-  <div class="wrapper">
-    <div v-if="isLoaded">
-      <h2>🦀 Arena Brawl is still alive 🦀</h2>
-      <p>There are currently {{ currentPlayers }} playing the dead game!</p>
-    </div>
-    <div v-else>🦀 Arena Brawl is actually dead 🦀</div>
+  <div class="main">
+    <player-counter />
+    <Footer />
   </div>
 </template>
-<script lang="ts">
+
+<script>
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
+import PlayerCounter from "./../components/PlayerCounter.vue";
+import Footer from "./../components/layout/Footer.vue";
 
-@Component({})
-export default class Index extends Vue {
-  private isAlive?: boolean;
-  private currentPlayers?: number;
-  private record?: number;
-
-  private isLoaded = false;
-
-  private mounted() {
-    this.getPlayerCount().then(({ data }) => {
-      this.isLoaded = true;
-      this.currentPlayers = data.playerCount;
-      this.record = data.record;
-      this.isAlive = data.playerCount > 0;
-    });
+@Component({
+  components: {
+    PlayerCounter,
+    Footer
   }
-
-  private getPlayerCount(): Promise<any> {
-    return this.axios.get("/status");
-  }
-}
+})
+export default class Index extends Vue {}
 </script>
 <style lang="scss" scoped>
-.wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.main {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 </style>
