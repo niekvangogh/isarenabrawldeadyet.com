@@ -17,6 +17,7 @@ jobs:
       #     npm ci
       #     npm run test:e2e
   deploy:
+    # needs: [tests]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -37,5 +38,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE }}
           script: |
             docker pull ${{ steps.docker.outputs.IMAGE_SHA_NAME }}
-            docker stop isarenabrawldeadyet.frontend || true && docker isarenabrawldeadyet.frontend || true
+            docker stop isarenabrawldeadyet.frontend || true && docker rm isarenabrawldeadyet.frontend || true
             docker run --detach -p 8080:8080 --name isarenabrawldeadyet.frontend ${{ steps.docker.outputs.IMAGE_SHA_NAME }}
