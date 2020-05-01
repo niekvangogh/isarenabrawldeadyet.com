@@ -29,7 +29,7 @@ export default class PlayerCounter extends Vue {
   }
 
   private getPlayerCount(): Promise<any> {
-    return this.axios.get("/status");
+    return this.axios.get("/api/status");
   }
 }
 </script>
