@@ -35,4 +35,4 @@ jobs:
           script: |
             docker pull ${{ steps.docker.outputs.IMAGE_SHA_NAME }}
             docker stop isarenabrawldeadyet.backend || true && docker rm isarenabrawldeadyet.backend || true
-            docker run --detach -p 3000:3000 --name isarenabrawldeadyet.backend ${{ steps.docker.outputs.IMAGE_SHA_NAME }}
+            docker run --detach -p 3000:3000 --name isarenabrawldeadyet.backend --network isarenabrawldeadyet ${{ steps.docker.outputs.IMAGE_SHA_NAME }}
