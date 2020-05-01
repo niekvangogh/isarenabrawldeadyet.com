@@ -1,6 +1,6 @@
 <template>
-  <div v-if="isLoaded" class="wrapper">
-    <div v-if="isAlive">
+  <div class="wrapper">
+    <div v-if="isAlive && isLoaded">
       <h2>🦀 {{ $t("counter.is_alive") }} 🦀</h2>
       <p>{{ $t("counter.currently_playing", { amount: currentPlayers }) }}</p>
     </div>
