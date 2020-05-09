@@ -34,4 +34,4 @@ jobs:
           script: |
             docker pull ${{ steps.docker.outputs.IMAGE_SHA_NAME }}
             docker stop isarenabrawldeadyet_frontend || true && docker rm isarenabrawldeadyet_frontend || true
-            docker run --detach -p 80:80 --name isarenabrawldeadyet_frontend --network isarenabrawldeadyet ${{ steps.docker.outputs.IMAGE_SHA_NAME }}
+            docker run --detach -p 80:80 --name isarenabrawldeadyet_frontend --network isarenabrawldeadyet -d ${{ steps.docker.outputs.IMAGE_SHA_NAME }}
