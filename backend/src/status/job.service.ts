@@ -11,7 +11,7 @@ export class TasksService {
         private readonly dataService: DataService,
     ) { }
 
-    @Interval(5000)
+    @Interval(600)
     async handleCron() {
         const { data } = await this.hypixelApiService.getGameCounts();
         const playerRecord = await this.dataService.getRecord();
