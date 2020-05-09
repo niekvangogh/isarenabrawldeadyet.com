@@ -35,5 +35,5 @@ jobs:
           script: |
             docker pull ${{ steps.docker.outputs.IMAGE_SHA_NAME }}
             docker stop isarenabrawldeadyet_backend || true && docker rm isarenabrawldeadyet_backend || true
-            docker run -p 6379:6379 -v ~/redis-data:/var/lib/redis redis:alpine 
+            docker run -p 6379:6379 -v ~/redis-data:/var/lib/redis --network isarenabrawldeadyet redis:alpine 
             docker run --detach -p 3000:3000 --name isarenabrawldeadyet_backend --network isarenabrawldeadyet -e HYPIXEL_API_KEY=${{ secrets.HYPIXEL_API_KEY }} -e HYPIXEL_API_URL=https://api.hypixel.net ${{ steps.docker.outputs.IMAGE_SHA_NAME }}
