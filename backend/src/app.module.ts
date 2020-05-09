@@ -16,7 +16,7 @@ import { TasksService } from './status/job.service';
     ),
     HypixelApiModule,
     RedisModule.register({
-      url: 'redis://redis',
+      url: 'redis://redis:6379',
     }),
     ScheduleModule.forRoot(),
   ],

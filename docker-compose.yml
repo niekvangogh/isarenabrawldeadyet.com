@@ -1,29 +1,37 @@
 version: "3.7"
 services:
   redis:
-    image: redis
+    image: "redis:alpine"
     ports:
       - "6379:6379"
     volumes:
-      - "~/redis/data:/var/lib/redis"
+      - $PWD/redis-data:/var/lib/redis
+      - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
   frontend:
     build:
       context: frontend
       dockerfile: Dockerfile
+    depends_on:
+      - backend
+    links:
+      - backend
     ports:
-      - "8080:8080"
+      - "80:80"
     volumes:
       - "./frontend/src:/app/src"
+  backend:
     depends_on:
       - redis
-      - backend
-  backend:
     build:
       context: backend
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    depends_on:
-      - redis
     volumes:
       - "./backend/src:/app/src"
+    links:
+      - redis
+networks:
+  default:
+    external:
+      name: isarenabrawldeadyet.com

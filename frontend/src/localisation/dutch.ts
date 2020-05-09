@@ -3,7 +3,8 @@ export const nl = {
     is_dead: "Arena Brawl is harstikke dood",
     is_alive: "Arena Brawl leeft nog",
     currently_playing:
-      "Er zijn op het moment {amount} spelers het dode spel aan het spelen!"
+      "Er zijn op het moment {amount} spelers het dode spel aan het spelen!",
+    record: "Het record is {record}"
   },
   footer: {
     made_with: "Gemaakt met ",

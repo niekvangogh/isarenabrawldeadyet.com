@@ -1,10 +1,13 @@
 <template>
   <div class="wrapper">
-    <div v-if="isAlive && isLoaded">
-      <h2>🦀 {{ $t("counter.is_alive") }} 🦀</h2>
-      <p>{{ $t("counter.currently_playing", { amount: currentPlayers }) }}</p>
+    <div v-if="isLoaded">
+      <div v-if="isAlive">
+        <h2>🦀 {{ $t("counter.is_alive") }} 🦀</h2>
+        <p>{{ $t("counter.currently_playing", { amount: currentPlayers }) }}</p>
+        <small>{{ $t("counter.record", { record }) }}</small>
+      </div>
+      <div v-else>🦀 {{ $t("counter.is_dead") }} 🦀</div>
     </div>
-    <div v-else>🦀 {{ $t("counter.is_dead") }} 🦀</div>
   </div>
 </template>
 <script lang="ts">
@@ -20,11 +23,20 @@ export default class PlayerCounter extends Vue {
   private isLoaded = false;
 
   private mounted() {
+    this.update();
+
+    setInterval(() => {
+      this.update();
+    }, 10000);
+  }
+
+  private update() {
     this.getPlayerCount().then(({ data }) => {
       this.currentPlayers = data.playerCount;
       this.record = data.record;
       this.isAlive = data.playerCount > 0;
       this.isLoaded = true;
+      this.$forceUpdate();
     });
   }
 

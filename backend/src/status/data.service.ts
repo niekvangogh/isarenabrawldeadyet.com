@@ -21,7 +21,7 @@ export class DataService {
     }
 
     public async getCachedNumber(field: string) {
-        const result: string = await this.redisService.getClient().get('record');
+        const result: string = await this.redisService.getClient().get(field);
         if (result) {
             return +result;
         }

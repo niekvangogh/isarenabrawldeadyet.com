@@ -3,7 +3,8 @@ export const en = {
     is_dead: "Arena Brawl is actually dead",
     is_alive: "Arena Brawl is still alive",
     currently_playing:
-      "There are currently {amount} player(s) playing the dead game!"
+      "There are currently {amount} player(s) playing the dead game!",
+    record: "Record being {record}"
   },
   footer: {
     made_with: "Made with",
