@@ -1,5 +1,5 @@
-import { Injectable, HttpService } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
+import { Injectable, HttpService } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export default class HypixelApiService {
@@ -14,7 +14,7 @@ export default class HypixelApiService {
     }
 
     public getGameCounts(): Promise<any> {
-        return this.httpService.get("/gameCounts", {
+        return this.httpService.get('/gameCounts', {
             params: {
                 key: this.apiKey,
             },

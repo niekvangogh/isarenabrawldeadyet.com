@@ -18,7 +18,6 @@ export class DataService {
 
     public cache(field: string, count: number) {
         this.redisService.getClient().set(field, count);
-        this.redisService.getClient().bgsave();
     }
 
     public async getCachedNumber(field: string) {

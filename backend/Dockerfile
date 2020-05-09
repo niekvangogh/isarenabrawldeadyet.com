@@ -1,13 +1,15 @@
-FROM node:12
+FROM node:12.16
 
-WORKDIR /backend
+WORKDIR /app
+
+COPY ./package*.json ./
+
+RUN npm install --silent -g @nestjs/cli
+
+RUN npm install --silent
 
 COPY . .
 
-RUN npm i --production
-RUN npm install -g @nestjs/cli
+EXPOSE 3000
 
-RUN npm run build
-
-CMD node dist/main.js
-EXPOSE 3000/tcp
+CMD ["npm", "run", "start:prod"]

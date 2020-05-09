@@ -23,7 +23,6 @@ export default class PlayerCounter extends Vue {
     this.getPlayerCount().then(({ data }) => {
       this.currentPlayers = data.playerCount;
       this.record = data.record;
-      console.log(this.isAlive, this.isLoaded);
       this.isAlive = data.playerCount > 0;
       this.isLoaded = true;
     });

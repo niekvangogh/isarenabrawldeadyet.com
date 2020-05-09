@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { ScheduleModule } from '@nestjs/schedule';
+import { RedisModule } from 'nestjs-redis';
 import { AppController } from './app.controller';
 import { HypixelApiModule } from './hypixel/hypixelApi.module';
-import { ConfigModule } from '@nestjs/config';
-import { RedisModule } from 'nestjs-redis';
 import { DataService } from './status/data.service';
-import { ScheduleModule } from '@nestjs/schedule';
+import { TasksService } from './status/job.service';
 
 @Module({
   imports: [
@@ -14,7 +15,9 @@ import { ScheduleModule } from '@nestjs/schedule';
       },
     ),
     HypixelApiModule,
-    RedisModule,
+    RedisModule.register({
+      url: 'redis://redis',
+    }),
     ScheduleModule.forRoot(),
   ],
   controllers: [
@@ -22,6 +25,7 @@ import { ScheduleModule } from '@nestjs/schedule';
   ],
   providers: [
     DataService,
+    TasksService,
   ],
   exports: [
   ],
