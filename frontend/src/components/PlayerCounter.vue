@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div v-if="isLoaded">
-      <div v-if="isAlive">
+      <div class="player-counter" v-if="isAlive">
         <h2>🦀 {{ $t("counter.is_alive") }} 🦀</h2>
         <p>{{ $t("counter.currently_playing", { amount: currentPlayers }) }}</p>
         <small>{{ $t("counter.record", { record }) }}</small>

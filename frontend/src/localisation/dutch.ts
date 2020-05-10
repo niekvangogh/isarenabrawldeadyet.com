@@ -8,7 +8,8 @@ export const nl = {
   },
   footer: {
     made_with: "Gemaakt met ",
-    by: " door "
+    by: " door ",
+    credits: "De assets op deze pagina zijn gemaakt door Hypixel"
   }
 };
 

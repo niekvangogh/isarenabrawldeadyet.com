@@ -8,7 +8,8 @@ export const en = {
   },
   footer: {
     made_with: "Made with",
-    by: " by "
+    by: " by ",
+    credits: "Assets used on this page are made by Hypixel"
   }
 };
 
