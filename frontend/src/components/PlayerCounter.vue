@@ -53,5 +53,21 @@ export default class PlayerCounter extends Vue {
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  .player-counter {
+    &:after {
+      background: url("/assets/arena-brawl.png");
+      background-position: center center;
+      background-repeat: no-repeat;
+      content: "";
+      opacity: 0.2;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: -1;
+    }
+  }
 }
 </style>
