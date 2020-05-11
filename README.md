@@ -1,5 +1,6 @@
-# IsArenaBrawlDead.com
-probably
+# Is Arena Brawl dead yet? 
+Most likely
 
-![Backend](https://github.com/niekvangogh/isarenabrawldeadyet.com/workflows/Backend/badge.svg) ![Frontend](https://github.com/niekvangogh/isarenabrawldeadyet.com/workflows/Frontend/badge.svg)
+![backend](https://github.com/niekvangogh/isarenabrawldeadyet.com/workflows/Backend/badge.svg) 
+![frontend](https://github.com/niekvangogh/isarenabrawldeadyet.com/workflows/Frontend/badge.svg)
 
